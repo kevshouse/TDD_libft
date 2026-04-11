@@ -2,6 +2,11 @@
 #include "../includes/libft.h"
 
 /**
+ * @addtogroup UnitTests
+ * @{
+ */
+
+/**
  * @brief Structure to hold parameters for ft_split tests.
  */
 struct ft_split_test_params {
@@ -63,3 +68,5 @@ ParameterizedTest(struct ft_split_test_params *p, ft_split, edge_cases)
 	/* Clean up using your existing ft_free_split */
 	ft_free_split(result);
 }
+
+/** @} */

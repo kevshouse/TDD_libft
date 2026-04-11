@@ -6,7 +6,7 @@
 /*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 23:50:23 by kevin-ander       #+#    #+#             */
-/*   Updated: 2026/04/11 15:43:31 by kevin-ander      ###   ########.fr       */
+/*   Updated: 2026/04/11 18:38:34 by kevin-ander      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
  * @param s The string to evaluate.
  * @param c The delimiter character.
  * @return The number of words found.
+ * @internal
  */
 static size_t count_words(char const *s, char c)
 {
@@ -44,6 +45,7 @@ static size_t count_words(char const *s, char c)
  * @param arr The array of strings.
  * @param i The current index to free back from.
  * @return Always returns NULL.
+ * @internal
  */
 static char **free_array(char **arr, size_t i)
 {
@@ -58,6 +60,7 @@ static char **free_array(char **arr, size_t i)
  * @param s The string to split.
  * @param c The delimiter character.
  * @return A NULL-terminated array of strings, or NULL on allocation failure.
+ * @todo Refactor the double-malloc logic to potentially reduce string traversals.
  */
 char **ft_split(char const *s, char c)
 {

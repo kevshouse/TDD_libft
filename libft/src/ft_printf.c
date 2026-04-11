@@ -6,12 +6,15 @@
 /*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 23:50:37 by kevin-ander       #+#    #+#             */
-/*   Updated: 2025/05/16 23:50:56 by kevin-ander      ###   ########.fr       */
+/*   Updated: 2026/04/11 18:38:38 by kevin-ander      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
+/**
+ * @internal
+ */
 static int parse_format(const char *format, va_list args)
 {
 	int count;

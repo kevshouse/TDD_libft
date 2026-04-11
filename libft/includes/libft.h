@@ -8,6 +8,11 @@
 # include "ft_printf.h"
 
 /**
+ * @defgroup UnitTests Unit Tests
+ * @brief A collection of Criterion-based unit tests for verifying Libft functionality.
+ */
+
+/**
  * @brief Formatted output conversion.
  * @param format The format string.
  * @param ... Variadic arguments.
@@ -27,6 +32,7 @@ int     ft_max(size_t ref, size_t numb);
  * @brief Converts the initial portion of a string to a long integer.
  * @param str The string to convert.
  * @return The converted value.
+ * @todo Implement stricter overflow handling to match specific libc behaviors.
  */
 long	ft_atoi(const char *str);
 
@@ -49,6 +55,7 @@ int     ft_abs(int n);
  * @param s The string to split.
  * @param c The delimiter character.
  * @return An array of new strings, NULL-terminated.
+ * @see UnitTests, tests/test_ft_split_params.c, tests/test_ft_split_malloc.c
  */
 char	**ft_split(char const *s, char c);
 
@@ -72,6 +79,7 @@ int		ft_isdigit(int c);
  * @brief Outputs a character to the given file descriptor.
  * @param c Character to output.
  * @param fd File descriptor.
+ * @see UnitTests, tests/test_mock_no_wrap.c
  */
 void	ft_putchar_fd(char c, int fd);
 
@@ -86,6 +94,7 @@ void	ft_putstr_fd(char *str, int fd);
  * @brief Outputs a string to a file descriptor followed by a newline.
  * @param s String to output.
  * @param fd File descriptor.
+ * @see UnitTests
  */
 void	ft_putendl_fd(char *s, int fd);
 

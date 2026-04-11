@@ -1,30 +1,26 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keanders <keanders@student.42london.com    +#+  +:+       +#+        */
+/*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/02 15:08:54 by keanders          #+#    #+#             */
-/*   Updated: 2025/01/02 15:29:27 by keanders         ###   ########.fr       */
+/*   Created: 2025/01/02 14:49:50 by keanders          #+#    #+#             */
+/*   Updated: 2026/04/11 18:24:54 by kevin-ander      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+/**
+ * @brief Outputs the string 's' to the given file descriptor followed by a newline.
+ * @param s The string to output.
+ * @param fd The file descriptor to write to.
+ */
+void ft_putendl_fd(char *s, int fd)
 {
-	const unsigned char	*s;
-	unsigned char		*d;
-
-	d = dst;
-	s = src;
-	if (!dst && !src)
-		return (NULL);
-	while (n--)
-	{
-		*d++ = *s++;
-	}
-	return (dst);
+	if (!s)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

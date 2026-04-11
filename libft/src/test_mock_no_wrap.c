@@ -21,7 +21,7 @@ ssize_t mock_write(int fd, const void *buf, size_t count)
 /* 3. The "Magic": Redefine the function name before including the .c file.
    This replaces all instances of 'write' in ft_putchar_fd.c with 'mock_write'. */
 #define write mock_write
-#include "/home/kevin-anderson/Documents/code/TDD_libft/libft/src/ft_putchar_fd.c"
+#include "../src/ft_putchar_fd.c"
 #undef write
 
 /* 4. Setup and Test */

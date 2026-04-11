@@ -7,9 +7,10 @@ OUTPUT_DIRECTORY       = doc
 INPUT                  = src includes tests
 RECURSIVE              = YES
 FILE_PATTERNS          = *.c *.h
+EXCLUDE_PATTERNS       = */*.bak
 
 # Filter to exclude the 42 Header (Lines 1-12)
-# We apply the filter specifically to src and includes to avoid mangling test files.
+# This applies the filter only to implementation files, preserving test file headers.
 FILTER_PATTERNS        = "src/*=sed '1,12d'" "includes/*=sed '1,12d'"
 
 # Extraction settings
@@ -17,6 +18,9 @@ FILTER_PATTERNS        = "src/*=sed '1,12d'" "includes/*=sed '1,12d'"
 EXTRACT_ALL            = NO
 EXTRACT_PRIVATE        = NO
 EXTRACT_STATIC         = YES
+GENERATE_TESTLIST      = YES
+INTERNAL_DOCS          = NO
+GENERATE_TODOLIST      = YES
 
 # Parsing settings
 JAVADOC_AUTOBRIEF      = YES
@@ -33,6 +37,10 @@ REFERENCES_RELATION    = YES
 GENERATE_HTML          = YES
 HTML_OUTPUT            = html
 HTML_FILE_EXTENSION    = .html
+
+# Search engine configuration
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
 
 # Disable LaTeX (unless you specifically need PDF docs)
 GENERATE_LATEX         = NO

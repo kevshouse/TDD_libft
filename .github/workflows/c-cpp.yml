@@ -1,0 +1,27 @@
+name: Libft CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libcriterion-dev build-essential lcov valgrind
+
+    - name: Run Coverage
+      run: cd libft && make coverage
+
+    - name: Run Memory Check
+      run: cd libft && make valgrind
+
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: libft/coverage_report/

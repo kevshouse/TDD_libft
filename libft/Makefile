@@ -18,11 +18,11 @@ SRC_FILES = ft_abs.c \
             ft_calloc.c \
             ft_free_split.c \
             ft_isdigit.c \
-            ft_isvalidmum.c \
+            ft_isvalidnum.c \
             ft_max.c \
             ft_memcpy.c \
             ft_printf.c \
-            ft_ptendl_fd.c \
+            ft_putendl_fd.c \
             ft_putchar_fd.c \
             ft_putstr_fd.c \
             ft_split.c \
