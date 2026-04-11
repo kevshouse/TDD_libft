@@ -1,6 +1,11 @@
 #include <criterion/criterion.h>
 #include "../includes/libft.h"
 
+/**
+ * @addtogroup UnitTests
+ * @{
+ */
+
 static int *g_shared_array;
 static size_t g_size = 100;
 
@@ -22,12 +27,20 @@ void global_teardown(void)
  */
 TestSuite(shared_data_suite, .init = global_setup, .fini = global_teardown);
 
+/**
+ * @test Verifies that the first element of the shared array is initialized correctly.
+ */
 Test(shared_data_suite, test_first_element)
 {
 	cr_assert_eq(g_shared_array[0], 0);
 }
 
+/**
+ * @test Verifies that the last element of the shared array is initialized correctly.
+ */
 Test(shared_data_suite, test_last_element)
 {
 	cr_assert_eq(g_shared_array[g_size - 1], 99);
 }
+
+/** @} */

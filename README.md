@@ -1,6 +1,6 @@
 # Libft - TDD Edition
 
-![Build Status](https://github.com/kevshouse/TDD_libft/actions/workflows/c-cpp.yml/badge.svg)
+![Build Status](https://github.com/kevshouse/TDD_libft/actions/workflows/c-cpp.yml/badge.svg?branch=main)
 
 A modern, refactored implementation of the 42 `libft` project, developed using **Test-Driven Development (TDD)** principles and the **Criterion** testing framework.
 

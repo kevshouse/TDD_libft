@@ -24,9 +24,12 @@ ssize_t mock_write(int fd, const void *buf, size_t count)
 }
 
 /* 3. The "Magic": Redefine the function name before including the .c file.
-   This replaces all instances of 'write' in ft_putchar_fd.c with 'mock_write'. */
+   This replaces all instances of 'write' in ft_putchar_fd.c with 'mock_write'. 
+   We also rename the function to avoid duplicate symbols with libft.a. */
 #define write mock_write
+#define ft_putchar_fd ft_putchar_fd_mocked
 #include "../src/ft_putchar_fd.c"
+#undef ft_putchar_fd
 #undef write
 
 /* 4. Setup and Test */
@@ -43,7 +46,7 @@ void setup_mock(void)
 Test(ft_putchar_fd, mock_test, .init = setup_mock)
 {
 	/* Call the function under test */
-	ft_putchar_fd('A', 2);
+	ft_putchar_fd_mocked('A', 2);
 
 	/* Verify that our mock was called instead of the real 'write' */
 	cr_assert_eq(mock_state.call_count, 1, "Expected write to be called once");
