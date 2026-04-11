@@ -1,0 +1,45 @@
+# Project metadata
+PROJECT_NAME           = "Libft"
+PROJECT_NUMBER         = 1.0
+OUTPUT_DIRECTORY       = doc
+
+# Input configuration
+INPUT                  = src includes tests
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.h
+
+# Filter to exclude the 42 Header (Lines 1-12)
+# We apply the filter specifically to src and includes to avoid mangling test files.
+FILTER_PATTERNS        = "src/*=sed '1,12d'" "includes/*=sed '1,12d'"
+
+# Extraction settings
+# Set EXTRACT_ALL to NO to only document code with Doxygen (/**) comments.
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+
+# Parsing settings
+JAVADOC_AUTOBRIEF      = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+
+# Source browser settings
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# HTML Output configuration
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+
+# Disable LaTeX (unless you specifically need PDF docs)
+GENERATE_LATEX         = NO
+
+# Warnings and logging
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_LOGFILE           = doxygen_warnings.log

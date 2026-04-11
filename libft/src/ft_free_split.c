@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/17 03:12:46 by kevin-ander       #+#    #+#             */
+/*   Updated: 2025/05/17 03:13:04 by kevin-ander      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/libft.h"
+
+void ft_free_split(char **split)
+{
+	int i;
+
+	if (!split)
+		return;
+	i = -1;
+	while (split[++i])
+		free(split[i]);
+	free(split);
+}

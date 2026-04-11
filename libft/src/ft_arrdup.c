@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_arrdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/17 00:55:43 by kevin-ander       #+#    #+#             */
+/*   Updated: 2025/05/17 00:56:08 by kevin-ander      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/libft.h"
+
+int *ft_arrdup(const int *src, int size)
+{
+	int *dst;
+	int i;
+
+	if (!src || size <= 0)
+		return (NULL);
+	dst = malloc(sizeof(int) * size);
+	if (!dst)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	return (dst);
+}
