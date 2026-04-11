@@ -1,4 +1,5 @@
 #include <criterion/criterion.h>
+#include <criterion/parameterized.h>
 #include "../includes/libft.h"
 
 /**

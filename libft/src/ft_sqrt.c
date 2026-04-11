@@ -6,7 +6,7 @@
 /*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 23:49:25 by kevin-ander       #+#    #+#             */
-/*   Updated: 2025/05/16 23:49:29 by kevin-ander      ###   ########.fr       */
+/*   Updated: 2026/04/11 19:02:52 by kevin-ander      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int ft_sqrt(int num)
 	if (num <= 0)
 		return (0);
 	root = 1;
-	while (root * root <= num)
+	while (root <= 46340 && root * root <= num)
 	{
 		if (root * root == num)
 			return (root);
