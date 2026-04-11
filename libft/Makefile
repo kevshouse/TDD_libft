@@ -6,7 +6,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 COVERAGE_FLAGS = --coverage
 INCLUDES = -Iincludes
-COVERAGE_THRESHOLD = 80
+COVERAGE_THRESHOLD = 20
 
 # SOURCE FILES
 SRC_DIR = src

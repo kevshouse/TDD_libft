@@ -6,7 +6,7 @@
 /*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 23:50:37 by kevin-ander       #+#    #+#             */
-/*   Updated: 2026/04/11 18:38:38 by kevin-ander      ###   ########.fr       */
+/*   Updated: 2026/04/11 18:52:57 by kevin-ander      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,8 @@ int ft_printf(const char *format, ...)
 	i = -1;
 	while (format[++i])
 	{
-		if (format[i] == '%')
-		{
+		if (format[i] == '%' && format[i + 1])
 			count += parse_format(&format[++i], args);
-			if (format[i] != '\0')
-				i++;
-		}
 		else
 			count += write(1, &format[i], 1);
 	}
