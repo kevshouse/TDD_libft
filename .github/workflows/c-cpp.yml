@@ -18,7 +18,7 @@ jobs:
       run: cd libft && make coverage
 
     - name: Run Memory Check
-      run: cd libft && make valgrind
+      run: cd libft && make fclean && make valgrind
 
     - name: Upload Coverage Report
       uses: actions/upload-artifact@v4
