@@ -1,5 +1,4 @@
 #include <criterion/criterion.h>
-#include <criterion/parameterized.h>
 #include "../includes/libft.h"
 
 /**
@@ -17,11 +16,12 @@ struct ft_split_test_params {
 };
 
 /**
- * @brief Data provider for the parameterized tests.
+ * @brief Tests ft_split against multiple edge cases in a single test block.
+ * This avoids Criterion's parameterized test shared memory bugs with pointers.
  */
-ParameterizedTestParameters(ft_split, edge_cases)
+Test(ft_split, edge_cases)
 {
-	static struct ft_split_test_params params[] = {
+	struct ft_split_test_params params[] = {
 		{"hello world", ' ', {"hello", "world", NULL}},
 		{"   lorem   ipsum  ", ' ', {"lorem", "ipsum", NULL}},
 		{"split", 'z', {"split", NULL}},
@@ -31,43 +31,38 @@ ParameterizedTestParameters(ft_split, edge_cases)
 		{"--a--b--c--", '-', {"a", "b", "c", NULL}}
 	};
 
-	return cr_make_param_array(struct ft_split_test_params, params, sizeof(params) / sizeof(struct ft_split_test_params));
-}
+	size_t num_params = sizeof(params) / sizeof(struct ft_split_test_params);
 
-/**
- * @brief The actual test logic run for every entry in the parameter array.
- */
-ParameterizedTest(struct ft_split_test_params *p, ft_split, edge_cases)
-{
-	char	**result;
-	size_t	i;
-
-	result = ft_split(p->input, p->delimiter);
-
-	/* Ensure we actually got an array back */
-	cr_assert_not_null(result, "ft_split returned NULL for input: '%s'", p->input);
-
-	if (p->expected[0] == NULL)
+	for (size_t k = 0; k < num_params; k++)
 	{
-		/* Handle cases where no words are expected */
-		cr_assert_null(result[0], "Expected an empty array (first element NULL) for input: '%s'", p->input);
-	}
-	else
-	{
-		i = 0;
-		while (p->expected[i] != NULL)
+		struct ft_split_test_params *p = &params[k];
+		char **result = ft_split(p->input, p->delimiter);
+
+		/* Ensure we actually got an array back */
+		cr_assert_not_null(result, "ft_split returned NULL for input: '%s'", p->input);
+
+		if (p->expected[0] == NULL)
 		{
-			cr_assert_not_null(result[i], "Expected word at index %zu, but got NULL for input: '%s'", i, p->input);
-			cr_assert_str_eq(result[i], p->expected[i], "Word mismatch at index %zu for input: '%s'. Expected '%s', got '%s'", 
-				i, p->input, p->expected[i], result[i]);
-			i++;
+			/* Handle cases where no words are expected */
+			cr_assert_null(result[0], "Expected an empty array for input: '%s'", p->input);
 		}
-		/* Ensure the result array is properly NULL-terminated */
-		cr_assert_null(result[i], "Result array for input '%s' is not NULL-terminated at index %zu", p->input, i);
+		else
+		{
+			/* Verify each word matches exactly */
+			size_t i = 0;
+			while (p->expected[i] != NULL)
+			{
+				cr_assert_not_null(result[i], "Expected word at index %zu, got NULL for input: '%s'", i, p->input);
+				cr_assert_str_eq(result[i], p->expected[i], "Mismatch at index %zu for input: '%s'", i, p->input);
+				i++;
+			}
+			/* Ensure the final element is a NULL pointer */
+			cr_assert_null(result[i], "Expected array to be NULL-terminated at index %zu for input: '%s'", i, p->input);
+		}
+        
+		/* Clean up memory to keep Valgrind and leak checkers happy */
+		ft_free_split(result); 
 	}
-
-	/* Clean up using your existing ft_free_split */
-	ft_free_split(result);
 }
 
 /** @} */

@@ -3,7 +3,7 @@ NAME = libft.a
 
 # COMPILER SETTINGS
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 COVERAGE_FLAGS = --coverage
 INCLUDES = -Iincludes
 COVERAGE_THRESHOLD = 20
@@ -38,8 +38,11 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 # TEST SETTINGS
 TEST_NAME = unit_tests
+TEST_MALLOC_NAME = unit_tests_malloc
 TEST_DIR = tests
 TEST_SRCS = $(wildcard $(TEST_DIR)/*.c)
+TEST_NORMAL_SRCS = $(filter-out $(TEST_DIR)/test_ft_split_malloc.c, $(TEST_SRCS))
+TEST_MALLOC_SRCS = $(TEST_DIR)/test_ft_split_malloc.c
 
 # BUILD RULES
 all: $(NAME)
@@ -58,7 +61,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME) $(TEST_NAME) doxygen_warnings.log
+	rm -f $(NAME) $(TEST_NAME) $(TEST_MALLOC_NAME) doxygen_warnings.log
 	rm -rf doc coverage_report
 	rm -f $(SRC_DIR)/*.gcda $(SRC_DIR)/*.gcno
 	rm -f $(TEST_DIR)/*.gcda $(TEST_DIR)/*.gcno
@@ -67,8 +70,12 @@ re: fclean all
 
 # TEST RULES
 test: $(NAME)
-	$(CC) $(CFLAGS) $(INCLUDES) $(TEST_SRCS) -L. -lft -lcriterion -Wl,--wrap=malloc -o $(TEST_NAME)
+	@echo "\n=== RUNNING STANDARD TESTS ==="
+	$(CC) $(CFLAGS) $(INCLUDES) $(TEST_NORMAL_SRCS) -L. -lft -lcriterion -o $(TEST_NAME)
 	./$(TEST_NAME)
+	@echo "\n=== RUNNING MALLOC FAILURE TESTS ==="
+	$(CC) $(CFLAGS) $(INCLUDES) $(TEST_MALLOC_SRCS) -L. -lft -lcriterion -Wl,--wrap=malloc -o $(TEST_MALLOC_NAME)
+	./$(TEST_MALLOC_NAME)
 
 coverage: CFLAGS += $(COVERAGE_FLAGS)
 coverage: re test

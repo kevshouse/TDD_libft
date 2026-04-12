@@ -6,7 +6,7 @@
 /*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 23:50:23 by kevin-ander       #+#    #+#             */
-/*   Updated: 2026/04/11 18:38:34 by kevin-ander      ###   ########.fr       */
+/*   Updated: 2026/04/11 20:53:43 by kevin-ander      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ char **ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = count_words(s, c);
-	result = malloc((words + 1) * sizeof(char *));
+	result = (char **)ft_calloc(words + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
 	i = 0;
 	start = 0;
 	while (i < words)
 	{
-		while (s[start] == c)
+		while (s[start] && s[start] == c)
 			start++;
 		end = start;
 		while (s[end] && s[end] != c)

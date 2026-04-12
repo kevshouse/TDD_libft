@@ -6,7 +6,7 @@
 /*   By: kevin-anderson <kevin-anderson@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 03:12:46 by kevin-ander       #+#    #+#             */
-/*   Updated: 2025/05/17 03:13:04 by kevin-ander      ###   ########.fr       */
+/*   Updated: 2026/04/11 20:53:37 by kevin-ander      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void ft_free_split(char **split)
 {
-	int i;
+	size_t i;
 
 	if (!split)
 		return;
-	i = -1;
-	while (split[++i])
+	i = 0;
+	while (split[i])
+	{
 		free(split[i]);
+		i++;
+	}
 	free(split);
 }
