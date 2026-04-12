@@ -24,3 +24,4 @@ jobs:
         path: libft/coverage_report/
 
     - name: Run Memory Check
+      run: cd libft && make fclean && make valgrind
