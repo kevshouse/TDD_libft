@@ -79,7 +79,7 @@ test: $(NAME)
 
 coverage: CFLAGS += $(COVERAGE_FLAGS)
 coverage: re test
-	lcov --capture --directory . --output-file coverage.info --ignore-errors mrc,mismatch,gcov
+	lcov --capture --directory obj. --output-file coverage.info --ignore-errors mrc
 	genhtml coverage.info --output-directory coverage_report
 	@TOTAL_COV=$$(lcov --summary coverage.info | grep lines | sed 's/.*: \([0-9.]*\)%.*/\1/' | cut -d. -f1); \
 	if [ -z "$$TOTAL_COV" ]; then TOTAL_COV=0; fi; \
