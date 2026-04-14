@@ -65,6 +65,7 @@ fclean: clean
 	rm -rf doc coverage_report
 	rm -f $(SRC_DIR)/*.gcda $(SRC_DIR)/*.gcno
 	rm -f $(TEST_DIR)/*.gcda $(TEST_DIR)/*.gcno
+	rm -f *.gcda *.gcno coverage.info
 
 re: fclean all
 
@@ -73,6 +74,7 @@ test: $(NAME)
 	@echo "\n=== RUNNING STANDARD TESTS ==="
 	$(CC) $(CFLAGS) $(INCLUDES) $(TEST_NORMAL_SRCS) -L. -lft -lcriterion -o $(TEST_NAME)
 	./$(TEST_NAME)
+	rm -f src/*.gcda
 	@echo "\n=== RUNNING MALLOC FAILURE TESTS ==="
 	$(CC) $(CFLAGS) $(INCLUDES) $(TEST_MALLOC_SRCS) -L. -lft -lcriterion -Wl,--wrap=malloc -o $(TEST_MALLOC_NAME)
 	./$(TEST_MALLOC_NAME)
