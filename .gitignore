@@ -1,0 +1,17 @@
+# Compiled files
+*.o
+*.a
+libft.a
+unit_tests
+unit_tests_malloc
+
+# Coverage and Build artifacts
+*.gcda
+*.gcno
+coverage.info
+coverage_report/
+obj/
+make-srcs.txt
+
+# OS generated files
+.DS_Store
